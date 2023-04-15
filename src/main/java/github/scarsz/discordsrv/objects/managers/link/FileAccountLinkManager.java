@@ -86,6 +86,11 @@ public class FileAccountLinkManager extends AbstractAccountLinkManager {
                     }
                 }
             });
+
+            int taskNumber = Bukkit.getScheduler().scheduleSyncRepeatingTask(DiscordSRV.getPlugin(), this::save, 0, 12000);
+            if (taskNumber == -1) {
+                DiscordSRV.debug(Debug.ACCOUNT_LINKING, "Failed to schedule repeating task for account linking file saving");
+            }
         } catch (IOException e) {
             DiscordSRV.error("Failed to load linkedaccounts.json", e);
         }
@@ -292,7 +297,7 @@ public class FileAccountLinkManager extends AbstractAccountLinkManager {
             return;
         }
 
-        DiscordSRV.info(LangUtil.InternalMessage.LINKED_ACCOUNTS_SAVED.toString()
+        DiscordSRV.debug(Debug.ACCOUNT_LINKING, LangUtil.InternalMessage.LINKED_ACCOUNTS_SAVED.toString()
                 .replace("{ms}", String.valueOf(System.currentTimeMillis() - startTime))
         );
     }
