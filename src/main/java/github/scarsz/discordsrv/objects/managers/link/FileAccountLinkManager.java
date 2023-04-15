@@ -82,7 +82,7 @@ public class FileAccountLinkManager extends AbstractAccountLinkManager {
                     try {
                         linkedAccounts.put(value, UUID.fromString(key));
                     } catch (Exception f) {
-                        DiscordSRV.warning("Failed to load linkedaccounts.json file. It's extremely recommended to delete your linkedaccounts.json file.");
+                        DiscordSRV.warning("Failed to load linkedaccounts.json file. It's strongly recommended to delete your linkedaccounts.json file.");
                     }
                 }
             });
